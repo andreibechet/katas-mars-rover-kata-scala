@@ -31,20 +31,22 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
   }
 
   def moveBackward() = {
-    position = direction match {
-      case Direction.NORTH => Coordinate(position.x, position.y - 1)
-      case Direction.SOUTH => Coordinate(position.x, position.y + 1)
-      case Direction.EAST => Coordinate(position.x - 1, position.y)
-      case Direction.WEST => Coordinate(position.x + 1, position.y)
-    }
+    val translationVector = getTranslationVector(false)
+    position = Coordinate(position.x + translationVector.x, position.y + translationVector.y)
   }
 
   def moveForward() = {
-    position = direction match {
-      case Direction.NORTH => Coordinate(position.x, position.y + 1)
-      case Direction.SOUTH => Coordinate(position.x, position.y - 1)
-      case Direction.EAST => Coordinate(position.x + 1, position.y)
-      case Direction.WEST => Coordinate(position.x - 1, position.y)
+    val translationVector = getTranslationVector(true)
+    position = Coordinate(position.x + translationVector.x, position.y + translationVector.y)
+  }
+
+  def getTranslationVector(movingForward: Boolean): TranslationVector = {
+    val step = if (movingForward) 1 else -1
+    direction match {
+      case Direction.NORTH => TranslationVector(0, step)
+      case Direction.SOUTH => TranslationVector(0, -step)
+      case Direction.EAST => TranslationVector(step, 0)
+      case Direction.WEST => TranslationVector(-step, 0)
     }
   }
 
