@@ -7,6 +7,15 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
   var position = aPosition
   var direction = aDirection
 
+  def execute(commands: Array[Char]) = {
+    commands.foreach {
+      case 'f' => moveForward()
+      case 'b' => moveBackwards()
+      case 'l' => turnLeft()
+      case 'r' => turnRight()
+    }
+  }
+
   def turnRight() = {
     direction = direction match {
       case Direction.NORTH => Direction.EAST
