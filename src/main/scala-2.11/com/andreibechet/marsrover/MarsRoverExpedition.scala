@@ -40,20 +40,20 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
   }
 
   def moveBackwards(): Unit = {
-    currentDirection match {
-      case Direction.NORTH => position = Coordinate(position.x, position.y - 1)
-      case Direction.SOUTH => position = Coordinate(position.x, position.y + 1)
-      case Direction.EAST => position = Coordinate(position.x - 1, position.y)
-      case Direction.WEST => position = Coordinate(position.x + 1, position.y)
+    position = currentDirection match {
+      case Direction.NORTH => Coordinate(position.x, position.y - 1)
+      case Direction.SOUTH => Coordinate(position.x, position.y + 1)
+      case Direction.EAST => Coordinate(position.x - 1, position.y)
+      case Direction.WEST => Coordinate(position.x + 1, position.y)
     }
   }
 
   def moveForward(): Unit = {
-    currentDirection match {
-      case Direction.NORTH => position = Coordinate(position.x, position.y + 1)
-      case Direction.SOUTH => position = Coordinate(position.x, position.y - 1)
-      case Direction.EAST => position = Coordinate(position.x + 1, position.y)
-      case Direction.WEST => position = Coordinate(position.x - 1, position.y)
+    position = currentDirection match {
+      case Direction.NORTH => Coordinate(position.x, position.y + 1)
+      case Direction.SOUTH => Coordinate(position.x, position.y - 1)
+      case Direction.EAST => Coordinate(position.x + 1, position.y)
+      case Direction.WEST => Coordinate(position.x - 1, position.y)
     }
   }
 
