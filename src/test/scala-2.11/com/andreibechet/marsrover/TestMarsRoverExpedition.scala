@@ -8,10 +8,12 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
   class ExpeditionsAreEqualMatcher(right: MarsRoverExpedition) extends Matcher[MarsRoverExpedition] {
     def apply (left : MarsRoverExpedition) : MatchResult =
-      MatchResult(left.direction() === right.direction() && left.location() === right.location(),
+      MatchResult(left.direction === right.direction && left.position === right.position,
         "The compared expeditions are not equal", "The compared expeditions are equal" )
   }
   def beTheSameAs(right: MarsRoverExpedition) = new ExpeditionsAreEqualMatcher(right)
+
+  val ALL_DIRECTIONS: List[Direction.Value] = List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
 
   "A Mars rover expedition" should " have an initial position and direction" in {
     val marsRoverExpedition = new MarsRoverExpedition(Coordinate(1, 1), Direction.NORTH)
@@ -30,8 +32,9 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
   }
+
 
   "A Mars rover " should " be able to move backwards" in {
     def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
@@ -45,7 +48,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
   }
 
 
@@ -61,7 +64,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
   }
 
   "A Mars rover " should " be able to move right" in {
@@ -76,7 +79,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
+   ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
   }
 
 
