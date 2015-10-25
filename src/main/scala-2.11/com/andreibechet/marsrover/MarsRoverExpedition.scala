@@ -2,19 +2,19 @@ package com.andreibechet.marsrover
 
 import com.andreibechet.marsrover.Direction.Direction
 
-class MarsRoverExpedition(var position: (Int, Int), val currentDirection: Direction) {
+class MarsRoverExpedition(var position: Coordinate, val currentDirection: Direction) {
 
   def move(command: String) = {
     if (command == "f")
       currentDirection match {
-        case Direction.NORTH => position = (position._1, position._2 + 1)
-        case Direction.SOUTH => position = (position._1, position._2 - 1)
-        case Direction.EAST => position = (position._1 + 1, position._2)
-        case Direction.WEST => position = (position._1 - 1, position._2)
+        case Direction.NORTH => position = Coordinate(position.x, position.y + 1)
+        case Direction.SOUTH => position = Coordinate(position.x, position.y - 1)
+        case Direction.EAST => position = Coordinate(position.x + 1, position.y)
+        case Direction.WEST => position = Coordinate(position.x - 1, position.y)
       }
   }
 
-  def location(): (Int, Int) = position
+  def location(): Coordinate = position
 
   def direction(): Direction = currentDirection
 
