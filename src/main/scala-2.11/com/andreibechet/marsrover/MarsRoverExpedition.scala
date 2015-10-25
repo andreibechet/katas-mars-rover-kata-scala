@@ -6,7 +6,7 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
 
   var position = aPosition
   var direction = aDirection
-  var processCommands = new ProcessCommands(this)
+  val processCommands = new ProcessCommands(this)
 
   def execute(commands: Array[Char]) = {
     processCommands(commands)
@@ -30,7 +30,7 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
     }
   }
 
-  def moveBackwards() = {
+  def moveBackward() = {
     position = direction match {
       case Direction.NORTH => Coordinate(position.x, position.y - 1)
       case Direction.SOUTH => Coordinate(position.x, position.y + 1)
