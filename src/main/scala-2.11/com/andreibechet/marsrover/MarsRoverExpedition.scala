@@ -15,20 +15,20 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
   }
 
   def turnRight(): Unit = {
-    currentDirection match {
-      case Direction.NORTH => currentDirection = Direction.EAST
-      case Direction.SOUTH => currentDirection = Direction.WEST
-      case Direction.EAST => currentDirection = Direction.SOUTH
-      case Direction.WEST => currentDirection = Direction.NORTH
+    currentDirection = currentDirection match {
+      case Direction.NORTH => Direction.EAST
+      case Direction.SOUTH => Direction.WEST
+      case Direction.EAST => Direction.SOUTH
+      case Direction.WEST => Direction.NORTH
     }
   }
 
   def turnLeft(): Unit = {
-    currentDirection match {
-      case Direction.NORTH => currentDirection = Direction.WEST
-      case Direction.SOUTH => currentDirection = Direction.EAST
-      case Direction.EAST => currentDirection = Direction.NORTH
-      case Direction.WEST => currentDirection = Direction.SOUTH
+    currentDirection = currentDirection match {
+      case Direction.NORTH => Direction.WEST
+      case Direction.SOUTH => Direction.EAST
+      case Direction.EAST => Direction.NORTH
+      case Direction.WEST => Direction.SOUTH
     }
   }
 
