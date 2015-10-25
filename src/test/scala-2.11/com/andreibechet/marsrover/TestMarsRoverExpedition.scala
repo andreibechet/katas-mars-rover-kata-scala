@@ -33,6 +33,21 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
   }
 
+  "A Mars rover " should " be able to move backwards" in {
+    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+      val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
+      expedition.move("b")
+      direction match {
+        case Direction.NORTH => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 1), Direction.NORTH))
+        case Direction.SOUTH => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 3), Direction.SOUTH))
+        case Direction.EAST => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(1, 2), Direction.EAST))
+        case Direction.WEST => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(3, 2), Direction.WEST))
+      }
+    }
+
+    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
+  }
+
 
 
 
