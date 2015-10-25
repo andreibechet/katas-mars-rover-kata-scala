@@ -12,6 +12,14 @@ class MarsRoverExpedition(var position: Coordinate, val currentDirection: Direct
         case Direction.EAST => position = Coordinate(position.x + 1, position.y)
         case Direction.WEST => position = Coordinate(position.x - 1, position.y)
       }
+    else {
+      currentDirection match {
+        case Direction.NORTH => position = Coordinate(position.x, position.y - 1)
+        case Direction.SOUTH => position = Coordinate(position.x, position.y + 1)
+        case Direction.EAST => position = Coordinate(position.x - 1, position.y)
+        case Direction.WEST => position = Coordinate(position.x + 1, position.y)
+      }
+    }
   }
 
   def location(): Coordinate = position
