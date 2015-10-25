@@ -6,14 +6,10 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
 
   var position = aPosition
   var direction = aDirection
+  var processCommands = new ProcessCommands(this)
 
   def execute(commands: Array[Char]) = {
-    commands.foreach {
-      case 'f' => moveForward()
-      case 'b' => moveBackwards()
-      case 'l' => turnLeft()
-      case 'r' => turnRight()
-    }
+    processCommands(commands)
   }
 
   def turnRight() = {
