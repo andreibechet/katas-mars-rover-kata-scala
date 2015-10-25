@@ -82,6 +82,11 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
    ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
+  "A Mars rover " should " execute a char array of commands: f, b, l, r" in {
+    val expedition = new MarsRoverExpedition(Coordinate(0, 0), Direction.NORTH)
+    expedition.execute(Array('f', 'r', 'f', 'l', 'f', 'b', 'r', 'f'))
+    expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 1), Direction.EAST))
+  }
 
 
 }
