@@ -1,7 +1,12 @@
-class MarsRoverExpedition(initialPosition: (Int, Int), initialDirection: String) {
+class MarsRoverExpedition(var position: (Int, Int), val currentDirection: String) {
 
-  def location(): (Int, Int) = initialPosition
+  def move(command: String) = {
+    if (command == "f") 
+      position = (position._1, position._2 + 1)
+  }
 
-  def direction(): String = initialDirection
+  def location(): (Int, Int) = position
+
+  def direction(): String = currentDirection
 
 }
