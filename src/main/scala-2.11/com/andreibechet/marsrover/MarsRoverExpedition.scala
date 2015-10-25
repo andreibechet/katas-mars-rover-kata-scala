@@ -7,13 +7,6 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
   var position = aPosition
   var direction = aDirection
 
-  def turn(command: String) = {
-    // TODO: check that the command can only be "l" or "r"
-
-    if (command == "l") turnLeft()
-    else turnRight()
-  }
-
   def turnRight() = {
     direction = direction match {
       case Direction.NORTH => Direction.EAST
@@ -30,13 +23,6 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
       case Direction.EAST => Direction.NORTH
       case Direction.WEST => Direction.SOUTH
     }
-  }
-
-  def move(command: String) = {
-    // TODO: check that the command can only be "f" or "b"
-
-    if (command == "f") moveForward()
-    else moveBackwards()
   }
 
   def moveBackwards() = {
