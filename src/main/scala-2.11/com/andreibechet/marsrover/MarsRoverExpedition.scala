@@ -19,20 +19,29 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
 
   def move(command: String) = {
     // TODO: check that the command can only be "f" or "b"
+
     if (command == "f")
-      currentDirection match {
-        case Direction.NORTH => position = Coordinate(position.x, position.y + 1)
-        case Direction.SOUTH => position = Coordinate(position.x, position.y - 1)
-        case Direction.EAST => position = Coordinate(position.x + 1, position.y)
-        case Direction.WEST => position = Coordinate(position.x - 1, position.y)
-      }
+      moveForward()
     else {
-      currentDirection match {
-        case Direction.NORTH => position = Coordinate(position.x, position.y - 1)
-        case Direction.SOUTH => position = Coordinate(position.x, position.y + 1)
-        case Direction.EAST => position = Coordinate(position.x - 1, position.y)
-        case Direction.WEST => position = Coordinate(position.x + 1, position.y)
-      }
+      moveBackwards()
+    }
+  }
+
+  def moveBackwards(): Unit = {
+    currentDirection match {
+      case Direction.NORTH => position = Coordinate(position.x, position.y - 1)
+      case Direction.SOUTH => position = Coordinate(position.x, position.y + 1)
+      case Direction.EAST => position = Coordinate(position.x - 1, position.y)
+      case Direction.WEST => position = Coordinate(position.x + 1, position.y)
+    }
+  }
+
+  def moveForward(): Unit = {
+    currentDirection match {
+      case Direction.NORTH => position = Coordinate(position.x, position.y + 1)
+      case Direction.SOUTH => position = Coordinate(position.x, position.y - 1)
+      case Direction.EAST => position = Coordinate(position.x + 1, position.y)
+      case Direction.WEST => position = Coordinate(position.x - 1, position.y)
     }
   }
 
