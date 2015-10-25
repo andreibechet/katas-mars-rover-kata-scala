@@ -8,4 +8,11 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRoverExpedition.direction() should equal ("N")
   }
 
+  "A Mars rovers position" should " increase by one in the existing direction when receiving the command f" in {
+    val marsRoverExpedition = new MarsRoverExpedition((1, 1), "N")
+    marsRoverExpedition.move("f")
+    marsRoverExpedition.location() should equal (1, 2)
+    marsRoverExpedition.direction() should equal ("N")
+  }
+
 }
