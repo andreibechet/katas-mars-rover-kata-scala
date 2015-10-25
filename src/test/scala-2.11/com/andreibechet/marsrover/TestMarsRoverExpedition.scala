@@ -1,5 +1,6 @@
 package com.andreibechet.marsrover
 
+import com.andreibechet.marsrover.Direction.Direction
 import org.scalatest.matchers.{MatchResult, Matcher}
 import org.scalatest.{Assertion, FlatSpec, Matchers}
 
@@ -17,38 +18,19 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRoverExpedition should beTheSameAs(new MarsRoverExpedition(Coordinate(1, 1), Direction.NORTH))
   }
 
-  "A Mars rovers position" should " increase by one in the existing direction when receiving the command f" in {
-    def checkIfTheRoverIsFacingNorth: Assertion = {
-      val expedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.NORTH)
+  "A Mars rover " should " be able to move forward" in {
+    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+      val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
       expedition.move("f")
-      expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 3), Direction.NORTH))
+      direction match {
+        case Direction.NORTH => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 3), Direction.NORTH))
+        case Direction.SOUTH => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 1), Direction.SOUTH))
+        case Direction.EAST => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(3, 2), Direction.EAST))
+        case Direction.WEST => expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(1, 2), Direction.WEST))
+      }
     }
 
-    def checkIfTheRoverIsFacingSouth: Assertion = {
-      val expedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.SOUTH)
-      expedition.move("f")
-      expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(2, 1), Direction.SOUTH))
-    }
-
-    def checkIfTheRoverIsFacingEast: Assertion = {
-      val expedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.EAST)
-      expedition.move("f")
-      expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(3, 2), Direction.EAST))
-    }
-
-    def checkIfTheRoverIsFacingWest: Assertion = {
-      val expedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.WEST)
-      expedition.move("f")
-      expedition should beTheSameAs(new MarsRoverExpedition(Coordinate(1, 2), Direction.WEST))
-    }
-
-    checkIfTheRoverIsFacingNorth
-
-    checkIfTheRoverIsFacingSouth
-
-    checkIfTheRoverIsFacingEast
-
-    checkIfTheRoverIsFacingWest
+    List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).foreach(checkIfTheRoverIsFacing)
   }
 
 
