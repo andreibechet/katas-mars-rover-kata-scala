@@ -1,7 +1,7 @@
 package com.andreibechet.marsrover
 
 import org.scalatest.matchers.{MatchResult, Matcher}
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.{Assertion, FlatSpec, Matchers}
 
 class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
@@ -18,25 +18,41 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   "A Mars rovers position" should " increase by one in the existing direction when receiving the command f" in {
-    val northHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.NORTH)
-    northHeadingMarsRoverExpedition.move("f")
-    northHeadingMarsRoverExpedition.location() should equalTheCoordinate (Coordinate(2, 3))
-    northHeadingMarsRoverExpedition.direction() should equal (Direction.NORTH)
+    def checkIfTheRoverIsFacingNorth: Assertion = {
+      val northHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.NORTH)
+      northHeadingMarsRoverExpedition.move("f")
+      northHeadingMarsRoverExpedition.location() should equalTheCoordinate(Coordinate(2, 3))
+      northHeadingMarsRoverExpedition.direction() should equal(Direction.NORTH)
+    }
 
-    val southHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.SOUTH)
-    southHeadingMarsRoverExpedition.move("f")
-    southHeadingMarsRoverExpedition.location() should equalTheCoordinate (Coordinate(2, 1))
-    southHeadingMarsRoverExpedition.direction() should equal (Direction.SOUTH)
+    def checkIfTheRoverIsFacingSouth: Assertion = {
+      val southHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.SOUTH)
+      southHeadingMarsRoverExpedition.move("f")
+      southHeadingMarsRoverExpedition.location() should equalTheCoordinate(Coordinate(2, 1))
+      southHeadingMarsRoverExpedition.direction() should equal(Direction.SOUTH)
+    }
 
-    val eastHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.EAST)
-    eastHeadingMarsRoverExpedition.move("f")
-    eastHeadingMarsRoverExpedition.location() should equalTheCoordinate (Coordinate(3, 2))
-    eastHeadingMarsRoverExpedition.direction() should equal (Direction.EAST)
+    def checkIfTheRoverIsFacingEast: Assertion = {
+      val eastHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.EAST)
+      eastHeadingMarsRoverExpedition.move("f")
+      eastHeadingMarsRoverExpedition.location() should equalTheCoordinate(Coordinate(3, 2))
+      eastHeadingMarsRoverExpedition.direction() should equal(Direction.EAST)
+    }
 
-    val westHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.WEST)
-    westHeadingMarsRoverExpedition.move("f")
-    westHeadingMarsRoverExpedition.location() should equalTheCoordinate (Coordinate(1, 2))
-    westHeadingMarsRoverExpedition.direction() should equal (Direction.WEST)
+    def checkIfTheRoverIsFacingWest: Assertion = {
+      val westHeadingMarsRoverExpedition = new MarsRoverExpedition(Coordinate(2, 2), Direction.WEST)
+      westHeadingMarsRoverExpedition.move("f")
+      westHeadingMarsRoverExpedition.location() should equalTheCoordinate(Coordinate(1, 2))
+      westHeadingMarsRoverExpedition.direction() should equal(Direction.WEST)
+    }
+
+    checkIfTheRoverIsFacingNorth
+
+    checkIfTheRoverIsFacingSouth
+
+    checkIfTheRoverIsFacingEast
+
+    checkIfTheRoverIsFacingWest
   }
 
 
