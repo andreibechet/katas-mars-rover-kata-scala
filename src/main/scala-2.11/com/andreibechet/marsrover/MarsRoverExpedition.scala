@@ -9,12 +9,23 @@ class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
 
   def turn(command: String) = {
     // TODO: check that the command can only be "l" or "r"
-    currentDirection match {
-      case Direction.NORTH => currentDirection = Direction.WEST
-      case Direction.SOUTH => currentDirection = Direction.EAST
-      case Direction.EAST => currentDirection = Direction.NORTH
-      case Direction.WEST => currentDirection = Direction.SOUTH
+    if (command == "l") {
+      currentDirection match {
+        case Direction.NORTH => currentDirection = Direction.WEST
+        case Direction.SOUTH => currentDirection = Direction.EAST
+        case Direction.EAST => currentDirection = Direction.NORTH
+        case Direction.WEST => currentDirection = Direction.SOUTH
+      }
     }
+    else {
+      currentDirection match {
+        case Direction.NORTH => currentDirection = Direction.EAST
+        case Direction.SOUTH => currentDirection = Direction.WEST
+        case Direction.EAST => currentDirection = Direction.SOUTH
+        case Direction.WEST => currentDirection = Direction.NORTH
+      }
+    }
+
   }
 
   def move(command: String) = {
