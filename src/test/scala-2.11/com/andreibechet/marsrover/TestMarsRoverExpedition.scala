@@ -21,7 +21,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   "A Mars rover " should " be able to move forward" in {
-    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction): Assertion = {
       val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
       expedition.move("f")
       direction match {
@@ -32,12 +32,12 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
 
   "A Mars rover " should " be able to move backwards" in {
-    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction): Assertion = {
       val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
       expedition.move("b")
       direction match {
@@ -48,12 +48,12 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
 
   "A Mars rover " should " be able to move left" in {
-    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction): Assertion = {
       val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
       expedition.turn("l")
       direction match {
@@ -64,11 +64,11 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-    ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
+    ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
   "A Mars rover " should " be able to move right" in {
-    def checkIfTheRoverIsFacing(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction): Assertion = {
       val expedition = new MarsRoverExpedition(Coordinate(2, 2), direction)
       expedition.turn("r")
       direction match {
@@ -79,7 +79,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
       }
     }
 
-   ALL_DIRECTIONS.foreach(checkIfTheRoverIsFacing)
+   ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
 
