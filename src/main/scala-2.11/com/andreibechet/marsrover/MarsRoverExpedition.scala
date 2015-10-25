@@ -1,4 +1,6 @@
-import Direction.Direction
+package com.andreibechet.marsrover
+
+import com.andreibechet.marsrover.Direction.Direction
 
 class MarsRoverExpedition(var position: (Int, Int), val currentDirection: Direction) {
 

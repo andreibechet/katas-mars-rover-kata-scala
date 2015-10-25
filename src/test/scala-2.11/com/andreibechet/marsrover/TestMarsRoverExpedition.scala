@@ -1,3 +1,5 @@
+package com.andreibechet.marsrover
+
 import org.scalatest.{FlatSpec, Matchers}
 
 class TestMarsRoverExpedition extends FlatSpec with Matchers {
