@@ -13,6 +13,11 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRoverExpedition.move("f")
     marsRoverExpedition.location() should equal (1, 2)
     marsRoverExpedition.direction() should equal ("N")
+
+    val secondMarsRoverExpedition = new MarsRoverExpedition((2, 2), "S")
+    secondMarsRoverExpedition.move("f")
+    secondMarsRoverExpedition.location() should equal (2, 1)
+    secondMarsRoverExpedition.direction() should equal ("S")
   }
 
 }
