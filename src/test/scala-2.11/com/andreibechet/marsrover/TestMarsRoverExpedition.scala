@@ -6,18 +6,18 @@ import org.scalatest.{Assertion, FlatSpec, Matchers}
 
 class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
-  class ExpeditionsAreEqualMatcher(right: MarsRover) extends Matcher[MarsRover] {
+  class MarsRoversAreEqualMatcher(right: MarsRover) extends Matcher[MarsRover] {
     def apply (left : MarsRover) : MatchResult =
       MatchResult(left.direction === right.direction && left.position === right.position,
-        "The compared expeditions are not equal", "The compared expeditions are equal" )
+        "The compared rovers are not equal", "The compared rovers are equal" )
   }
-  def beTheSameAs(right: MarsRover) = new ExpeditionsAreEqualMatcher(right)
+  def beTheSameAs(right: MarsRover) = new MarsRoversAreEqualMatcher(right)
 
   val ALL_DIRECTIONS: List[Direction.Value] = List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
 
-  "A Mars rover expedition" should " have an initial position and direction" in {
-    val marsRoverExpedition = new MarsRover(Coordinate(1, 1), Direction.NORTH)
-    marsRoverExpedition should beTheSameAs(new MarsRover(Coordinate(1, 1), Direction.NORTH))
+  "A Mars rover " should " have an initial position and direction" in {
+    val marsRover = new MarsRover(Coordinate(1, 1), Direction.NORTH)
+    marsRover should beTheSameAs(new MarsRover(Coordinate(1, 1), Direction.NORTH))
   }
 
   "A Mars rover " should " be able to move forward" in {
@@ -83,9 +83,9 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   "A Mars rover " should " execute a char array of commands: f, b, l, r" in {
-    val expedition = new MarsRover(Coordinate(0, 0), Direction.NORTH)
-    expedition.execute(Array('f', 'r', 'f', 'l', 'f', 'b', 'r', 'f'))
-    expedition should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.EAST))
+    val marsRover = new MarsRover(Coordinate(0, 0), Direction.NORTH)
+    marsRover.execute(Array('f', 'r', 'f', 'l', 'f', 'b', 'r', 'f'))
+    marsRover should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.EAST))
   }
 
 }
