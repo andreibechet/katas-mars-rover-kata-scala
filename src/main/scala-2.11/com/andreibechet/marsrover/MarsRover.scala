@@ -2,7 +2,7 @@ package com.andreibechet.marsrover
 
 import com.andreibechet.marsrover.Direction.Direction
 
-class MarsRoverExpedition(aPosition: Coordinate, aDirection: Direction) {
+class MarsRover(aPosition: Coordinate, aDirection: Direction) {
 
   var position = aPosition
   var direction = aDirection
