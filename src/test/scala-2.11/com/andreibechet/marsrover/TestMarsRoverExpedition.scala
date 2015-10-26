@@ -20,7 +20,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRover should beTheSameAs(new MarsRover(Coordinate(1, 1), Direction.NORTH))
   }
 
-  "A Mars rover " should " be able to move forward" in {
+  it should " be able to move forward" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
       val marsRover = new MarsRover(Coordinate(2, 2), direction)
       direction match {
@@ -35,7 +35,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
 
-  "A Mars rover " should " be able to move backwards" in {
+  it should " be able to move backwards" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
       val marsRover = new MarsRover(Coordinate(2, 2), direction)
       direction match {
@@ -50,7 +50,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
 
-  "A Mars rover " should " be able to move left" in {
+  it should " be able to move left" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
       val marsRover = new MarsRover(Coordinate(2, 2), direction)
       direction match {
@@ -64,7 +64,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
-  "A Mars rover " should " be able to move right" in {
+  it should " be able to move right" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
       val marsRover = new MarsRover(Coordinate(2, 2), direction)
       direction match {
@@ -78,7 +78,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
    ALL_DIRECTIONS.foreach(checkTheRoverIntel)
   }
 
-  "A Mars rover " should " execute a char array of commands: f, b, l, r" in {
+  it should " execute a char array of commands: f, b, l, r" in {
     val commands: Array[Char] = Array('f', 'r', 'f', 'l', 'f', 'b', 'r', 'f')
     val marsRover = new MarsRover(Coordinate(0, 0), Direction.NORTH)
     marsRover.execute(commands) should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.EAST))
@@ -89,7 +89,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(0, 0), Direction.EAST, new Grid(3, 3)))
   }
 
-  "A grid " should " wrap the edges around when a rover moves backwards on it" in {
+  it should " wrap the edges around when a rover moves backwards on it" in {
     val marsRover = new MarsRover(Coordinate(0, 0), Direction.WEST, new Grid(3, 3))
     marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(2, 0), Direction.WEST, new Grid(3, 3)))
   }
