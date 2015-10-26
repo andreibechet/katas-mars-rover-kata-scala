@@ -6,7 +6,7 @@ class MarsRover(initialPosition: Coordinate, initialDirection: Direction, theGri
 
   var position = initialPosition
   var direction = initialDirection
-  val processCommands = new ProcessCommands(this)
+  val processCommands = new ProcessCommands()
   val computeTranslationVector = new ComputeTranslationVector()
   val grid = theGrid
 
@@ -44,6 +44,19 @@ class MarsRover(initialPosition: Coordinate, initialDirection: Direction, theGri
   def moveForward() = {
     val movingForward = true
     position = grid.moveFromWith(position, computeTranslationVector(movingForward, direction))
+  }
+
+  class ProcessCommands() {
+    def apply(commands: Array[Char]) = {
+      commands.foreach(processCommand)
+    }
+
+    def processCommand(command: Char) = command match {
+      case 'f' => moveForward()
+      case 'b' => moveBackward()
+      case 'l' => turnLeft()
+      case 'r' => turnRight()
+    }
   }
 
 }
