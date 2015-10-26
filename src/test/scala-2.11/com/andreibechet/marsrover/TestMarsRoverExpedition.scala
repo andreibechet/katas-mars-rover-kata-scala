@@ -14,6 +14,8 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   def beTheSameAs(right: MarsRover) = new MarsRoversAreEqualMatcher(right)
 
   val ALL_DIRECTIONS: List[Direction.Value] = List(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
+  val someCoordinate: Coordinate = Coordinate(2, 2)
+  val someGrid: Grid = new Grid(3, 3)
 
   "A Mars rover " should " have an initial position and direction" in {
     val marsRover = new MarsRover(Coordinate(1, 1), Direction.NORTH)
@@ -22,7 +24,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
   it should " be able to move forward" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
-      val marsRover = new MarsRover(Coordinate(2, 2), direction)
+      val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.moveForward() should beTheSameAs(new MarsRover(Coordinate(2, 3), Direction.NORTH))
         case Direction.SOUTH => marsRover.moveForward() should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.SOUTH))
@@ -37,7 +39,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
   it should " be able to move backwards" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
-      val marsRover = new MarsRover(Coordinate(2, 2), direction)
+      val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.moveBackward() should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.NORTH))
         case Direction.SOUTH => marsRover.moveBackward() should beTheSameAs(new MarsRover(Coordinate(2, 3), Direction.SOUTH))
@@ -52,12 +54,12 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
   it should " be able to move left" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
-      val marsRover = new MarsRover(Coordinate(2, 2), direction)
+      val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
-        case Direction.NORTH => marsRover.turnLeft() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.WEST))
-        case Direction.SOUTH => marsRover.turnLeft() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.EAST))
-        case Direction.EAST => marsRover.turnLeft() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.NORTH))
-        case Direction.WEST => marsRover.turnLeft() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.SOUTH))
+        case Direction.NORTH => marsRover.turnLeft() should beTheSameAs(new MarsRover(someCoordinate, Direction.WEST))
+        case Direction.SOUTH => marsRover.turnLeft() should beTheSameAs(new MarsRover(someCoordinate, Direction.EAST))
+        case Direction.EAST => marsRover.turnLeft() should beTheSameAs(new MarsRover(someCoordinate, Direction.NORTH))
+        case Direction.WEST => marsRover.turnLeft() should beTheSameAs(new MarsRover(someCoordinate, Direction.SOUTH))
       }
     }
 
@@ -66,12 +68,12 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
   it should " be able to move right" in {
     def checkTheRoverIntel(direction: Direction): Assertion = {
-      val marsRover = new MarsRover(Coordinate(2, 2), direction)
+      val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
-        case Direction.NORTH => marsRover.turnRight() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.EAST))
-        case Direction.SOUTH => marsRover.turnRight() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.WEST))
-        case Direction.EAST => marsRover.turnRight() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.SOUTH))
-        case Direction.WEST => marsRover.turnRight() should beTheSameAs(new MarsRover(Coordinate(2, 2), Direction.NORTH))
+        case Direction.NORTH => marsRover.turnRight() should beTheSameAs(new MarsRover(someCoordinate, Direction.EAST))
+        case Direction.SOUTH => marsRover.turnRight() should beTheSameAs(new MarsRover(someCoordinate, Direction.WEST))
+        case Direction.EAST => marsRover.turnRight() should beTheSameAs(new MarsRover(someCoordinate, Direction.SOUTH))
+        case Direction.WEST => marsRover.turnRight() should beTheSameAs(new MarsRover(someCoordinate, Direction.NORTH))
       }
     }
 
@@ -85,13 +87,13 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   "A grid " should " wrap the edges around when a rover moves forwards on it" in {
-    val marsRover = new MarsRover(Coordinate(2, 0), Direction.EAST, new Grid(3, 3))
-    marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(0, 0), Direction.EAST, new Grid(3, 3)))
+    val marsRover = new MarsRover(Coordinate(2, 0), Direction.EAST, someGrid)
+    marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(0, 0), Direction.EAST, someGrid))
   }
 
   it should " wrap the edges around when a rover moves backwards on it" in {
-    val marsRover = new MarsRover(Coordinate(0, 0), Direction.WEST, new Grid(3, 3))
-    marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(2, 0), Direction.WEST, new Grid(3, 3)))
-  }
 
+    val marsRover = new MarsRover(Coordinate(0, 0), Direction.WEST, someGrid)
+    marsRover.execute(Array('f')) should beTheSameAs(new MarsRover(Coordinate(2, 0), Direction.WEST, someGrid))
+  }
 }
