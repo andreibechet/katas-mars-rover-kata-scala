@@ -88,4 +88,10 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
     marsRover should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.EAST))
   }
 
+  "A grid " should " wrap the edges around when a rover moves on it" in {
+    val marsRover = new MarsRover(Coordinate(2, 0), Direction.EAST, new Grid(3, 3))
+    marsRover.execute(Array('f'))
+    marsRover should beTheSameAs(new MarsRover(Coordinate(0, 0), Direction.EAST, new Grid(3, 3)))
+  }
+
 }
