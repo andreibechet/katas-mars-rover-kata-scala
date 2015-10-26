@@ -2,13 +2,17 @@ package com.andreibechet.marsrover
 
 import com.andreibechet.marsrover.Direction.Direction
 
-class MarsRover(aPosition: Coordinate, aDirection: Direction) {
+class MarsRover(initialPosition: Coordinate, initialDirection: Direction, theGrid: Grid) {
 
-  var position = aPosition
-  var direction = aDirection
+  var position = initialPosition
+  var direction = initialDirection
   val processCommands = new ProcessCommands(this)
   val computeTranslationVector = new ComputeTranslationVector()
-  val grid = new Grid()
+  val grid = theGrid
+
+  def this(initialPosition: Coordinate, initialDirection: Direction) {
+    this(initialPosition, initialDirection, new Grid(10, 10))
+  }
 
   def execute(commands: Array[Char]) = {
     processCommands(commands)
