@@ -9,7 +9,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   class MarsRoversAreEqualMatcher(right: MarsRover) extends Matcher[MarsRover] {
     def apply (left : MarsRover) : MatchResult =
       MatchResult(left.direction === right.direction && left.position === right.position,
-        "The compared rovers are not equal", "The compared rovers are equal" )
+        "The compared rovers are not the same", "The compared rovers are the same" )
   }
   def beTheSameAs(right: MarsRover) = new MarsRoversAreEqualMatcher(right)
 
