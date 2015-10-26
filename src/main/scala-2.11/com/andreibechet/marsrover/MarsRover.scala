@@ -7,7 +7,7 @@ class MarsRover(aPosition: Coordinate, aDirection: Direction) {
   var position = aPosition
   var direction = aDirection
   val processCommands = new ProcessCommands(this)
-  val computeTranslationVector = new ComputeTranslationVector(this)
+  val computeTranslationVector = new ComputeTranslationVector()
   val grid = new Grid()
 
   def execute(commands: Array[Char]) = {
@@ -34,12 +34,12 @@ class MarsRover(aPosition: Coordinate, aDirection: Direction) {
 
   def moveBackward() = {
     val movingForward = false
-    position = grid.moveFromWith(position, computeTranslationVector(movingForward))
+    position = grid.moveFromWith(position, computeTranslationVector(movingForward, direction))
   }
 
   def moveForward() = {
     val movingForward = true
-    position = grid.moveFromWith(position, computeTranslationVector(movingForward))
+    position = grid.moveFromWith(position, computeTranslationVector(movingForward, direction))
   }
 
 }

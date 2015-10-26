@@ -1,13 +1,15 @@
 package com.andreibechet.marsrover
 
-class ComputeTranslationVector(rover: MarsRover) {
+import com.andreibechet.marsrover.Direction.Direction
 
-  def apply(movingForward: Boolean): TranslationVector = {
+class ComputeTranslationVector() {
+
+  def apply(movingForward: Boolean, direction: Direction): TranslationVector = {
     val step = if (movingForward) 1 else -1
-    processCurrentDirection(step)
+    processCurrentDirection(step, direction)
   }
 
-  def processCurrentDirection(step: Int): TranslationVector = rover.direction match {
+  def processCurrentDirection(step: Int, direction: Direction): TranslationVector = direction match {
       case Direction.NORTH => TranslationVector(0, step)
       case Direction.SOUTH => TranslationVector(0, -step)
       case Direction.EAST => TranslationVector(step, 0)
