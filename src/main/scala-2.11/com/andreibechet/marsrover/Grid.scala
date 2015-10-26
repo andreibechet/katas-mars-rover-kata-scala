@@ -6,6 +6,6 @@ class Grid(m: Int, n: Int) {
     wrapAroundEdges(Coordinate(position.x + translationVector.x, position.y + translationVector.y))
 
   def wrapAroundEdges(traveledDistance: Coordinate):Coordinate =
-    Coordinate(traveledDistance.x % m, traveledDistance.y % n)
+    Coordinate((traveledDistance.x + m) % m, (traveledDistance.y + n) % n)
 
 }
