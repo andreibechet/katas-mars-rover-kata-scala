@@ -25,7 +25,7 @@ class MarsRover(initialPosition: Coordinate, initialDirection: Direction, theGri
       case Direction.EAST => Direction.SOUTH
       case Direction.WEST => Direction.NORTH
     }
-    new MarsRover(position, newDirection)
+    new MarsRover(position, newDirection, grid)
   }
 
   def turnLeft(): MarsRover = {
@@ -35,32 +35,32 @@ class MarsRover(initialPosition: Coordinate, initialDirection: Direction, theGri
       case Direction.EAST => Direction.NORTH
       case Direction.WEST => Direction.SOUTH
     }
-    new MarsRover(position, newDirection)
+    new MarsRover(position, newDirection, grid)
   }
 
   def moveBackward(): MarsRover = {
     val movingForward = false
     val newPosition = grid.moveFromWith(position, computeTranslationVector(movingForward, direction))
-    new MarsRover(newPosition, direction)
+    new MarsRover(newPosition, direction, grid)
   }
 
   def moveForward(): MarsRover = {
     val movingForward = true
     val newPosition = grid.moveFromWith(position, computeTranslationVector(movingForward, direction))
-    new MarsRover(newPosition, direction)
+    new MarsRover(newPosition, direction, grid)
   }
 
   class ProcessCommands() {
     def apply(marsRover: MarsRover, commands: Array[Char]): MarsRover = {
       if (commands.isEmpty) return marsRover
-      apply(processCommand(commands.head), commands.tail)
+      apply(processCommand(marsRover, commands.head), commands.tail)
     }
 
-    def processCommand(command: Char): MarsRover = command match {
-      case 'f' => moveForward()
-      case 'b' => moveBackward()
-      case 'l' => turnLeft()
-      case 'r' => turnRight()
+    def processCommand(marsRover: MarsRover, command: Char): MarsRover = command match {
+      case 'f' => marsRover.moveForward()
+      case 'b' => marsRover.moveBackward()
+      case 'l' => marsRover.turnLeft()
+      case 'r' => marsRover.turnRight()
     }
   }
 
