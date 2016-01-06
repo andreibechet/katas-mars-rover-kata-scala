@@ -2,9 +2,9 @@ package com.andreibechet.marsrover
 
 import com.andreibechet.marsrover.Direction.Direction
 import org.scalatest.matchers.{MatchResult, Matcher}
-import org.scalatest.{Assertion, FlatSpec, Matchers}
+import org.scalatest.{ShouldMatchers, FlatSpec}
 
-class TestMarsRoverExpedition extends FlatSpec with Matchers {
+class TestMarsRoverExpedition extends FlatSpec with ShouldMatchers {
 
   class MarsRoversAreEqualMatcher(right: MarsRover) extends Matcher[MarsRover] {
     def apply (left : MarsRover) : MatchResult =
@@ -23,7 +23,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   it should " be able to move forward" in {
-    def checkTheRoverIntel(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction) = {
       val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.moveForward() should beTheSameAs(new MarsRover(Coordinate(2, 3), Direction.NORTH))
@@ -38,7 +38,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
 
   it should " be able to move backwards" in {
-    def checkTheRoverIntel(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction) = {
       val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.moveBackward() should beTheSameAs(new MarsRover(Coordinate(2, 1), Direction.NORTH))
@@ -53,7 +53,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
 
 
   it should " be able to move left" in {
-    def checkTheRoverIntel(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction) = {
       val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.turnLeft() should beTheSameAs(new MarsRover(someCoordinate, Direction.WEST))
@@ -67,7 +67,7 @@ class TestMarsRoverExpedition extends FlatSpec with Matchers {
   }
 
   it should " be able to move right" in {
-    def checkTheRoverIntel(direction: Direction): Assertion = {
+    def checkTheRoverIntel(direction: Direction) = {
       val marsRover = new MarsRover(someCoordinate, direction)
       direction match {
         case Direction.NORTH => marsRover.turnRight() should beTheSameAs(new MarsRover(someCoordinate, Direction.EAST))
